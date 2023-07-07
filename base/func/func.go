@@ -4,5 +4,7 @@
 package main
 
 func main() {
-
+	/**
+	 * 函数
+	 */
 }
