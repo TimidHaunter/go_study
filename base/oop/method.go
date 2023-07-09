@@ -7,18 +7,18 @@ import "fmt"
 
 func main() {
 	/**
-	 * 方法：和函数一样，但是需要指定一个接收者，这个类型的值或者这个类型的指针调用
-	 * func (t Type) methodName (parameter list) (return list) {}
-     *
-     * 对比函数
-	 * A 意义
-	 *  方法：某个类别的行为功能，需要指定的接受者调用
-	 *  函数：一段独立的功能的代码，可以直接调用
-	 *
-	 * B 语法
-	 *  方法：方法名可以相同，只要接收者不同
-	 *  函数：命名不能冲突
-	 */
+		 * 方法：和函数一样，但是需要指定一个接收者，这个类型的值或者这个类型的指针调用
+		 * func (t Type) methodName (parameter list) (return list) {}
+	     *
+	     * 对比函数
+		 * A 意义
+		 *  方法：某个类别的行为功能，需要指定的接受者调用
+		 *  函数：一段独立的功能的代码，可以直接调用
+		 *
+		 * B 语法
+		 *  方法：方法名可以相同，只要接收者不同
+		 *  函数：命名不能冲突
+	*/
 
 	// 结构体值调用
 	w1 := Worker{name: "HuaR", age: 22, gender: "male"}
@@ -69,10 +69,10 @@ func (p *Worker) rest() { /* w1结构体调用的时候，方法自动取w1的�
 
 // 方法名字相同，调用者不同
 func (p *Worker) printInfo() {
-	fmt.Printf("工人名字：%s，工人年龄：%d，工人性别：%s \n", p.name, p.age, p.gender)
+	fmt.Printf("工人名字:%s, 工人年龄：%d, 工人性别:%s \n", p.name, p.age, p.gender)
 }
 
 // 方法名字相同，调用者不同
 func (p *Cat) printInfo() {
-	fmt.Printf("猫颜色：%s，猫年龄：%d \n", p.color, p.age)
+	fmt.Printf("猫颜色:%s, 猫年龄:%d \n", p.color, p.age)
 }
