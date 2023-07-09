@@ -8,6 +8,7 @@ import "fmt"
 func main() {
 	/*
 	 * 结构体模拟继承
+	 * 属性的继承
 	 */
 	// 创建父类对象
 	p1 := Parents{name: "关羽", age: 56}
