@@ -10,10 +10,14 @@ func main() {
 	 * 接口：一组方法签名，接口定义方法的声明
 	 * 类型为接口中所有方法提供定义，实现接口
 	 *
-	 * Go语言，接口和类型的实现关系，是非嵌入的
+	 * Go语言，接口和类型的实现关系，是非侵入的
 	 *
 	 * 其他语言，显示定义
 	 * class Mouse implements USB{}
+	 *
+	 * 接口的实现
+	 * A.看成实现本身的类型，能够访问实现类中的属性和方法
+	 * B.看成对应的接口类型，只能访问接口中定义的方法
 	 */
 
 	// 创建Mouse
@@ -22,6 +26,7 @@ func main() {
 	// 创建FlashDisk
 	f1 := FlashDisk{"金士顿8G"}
 	fmt.Println(f1)
+	f1.deleteData()
 
 	fmt.Println("=====================================")
 
@@ -87,4 +92,8 @@ func (f FlashDisk) end() {
 func testInterface(usb USB) {
 	usb.start()
 	usb.end()
+}
+
+func (f FlashDisk) deleteData() {
+	fmt.Println(f.name, "U盘,删除数据~~~")
 }
