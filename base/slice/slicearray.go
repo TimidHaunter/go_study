@@ -7,7 +7,7 @@ import "fmt"
 
 func main() {
 	/*
-	 * 通过已有数组创建切片
+	 * 通过已有数组创建切片，切片截取
 	 * s := arr[startindex:endindex] 不包括endindex
 	 * arr[:end] 从头到endindex
 	 * arr[start:] 从startindex到尾
