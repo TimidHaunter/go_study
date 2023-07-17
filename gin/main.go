@@ -23,6 +23,15 @@ func main() {
 	r.GET("/json/struct", returnJsonStruct)
 	r.GET("/json/map", returnJsonMap)
 
+	// https://learnku.com/docs/gin-gonic/1.7/examples-querystring-param/11388
+	r.GET("/query/string", queryString)
+
+	// https://learnku.com/docs/gin-gonic/1.7/examples-query-and-post-form/11369
+	r.POST("/query/form", queryForm)
+
+	// https://learnku.com/docs/gin-gonic/1.7/parameters-in-path/11407
+	r.GET("/query/path/:id/:name", queryPath)
+
 	r.Run()
 }
 
@@ -73,4 +82,61 @@ func returnJsonMap(c *gin.Context) {
 		"age":     56,
 	}
 	c.JSON(http.StatusOK, data)
+}
+
+// 查询字符串参数
+func queryString(c *gin.Context) {
+	id := c.Query("id")
+	user := c.DefaultQuery("user", "Guest")
+	address := c.DefaultQuery("address", "地球")
+
+	var msg struct {
+		Id      string
+		User    string
+		Address string
+	}
+
+	msg.Id = id
+	msg.User = user
+	msg.Address = address
+
+	c.JSON(http.StatusOK, msg)
+}
+
+// Form表单
+func queryForm(c *gin.Context) {
+	id := c.Query("id")
+	page := c.DefaultQuery("page", "0")
+	name := c.PostForm("name")
+	message := c.PostForm("message")
+
+	var msg struct {
+		Id      string
+		Page    string
+		Name    string
+		Message string
+	}
+
+	msg.Id = id
+	msg.Page = page
+	msg.Name = name
+	msg.Message = message
+
+	c.JSON(http.StatusOK, msg)
+}
+
+// 获取路径中的参数
+func queryPath(c *gin.Context) {
+	id := c.Param("id")
+	name := c.Param("name")
+
+	var msg struct {
+		Id   string `json:"id"`
+		Name string `json:"user"`
+	}
+
+	msg.Id = id
+	msg.Name = name
+
+	c.JSON(http.StatusOK, msg)
 }
