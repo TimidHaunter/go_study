@@ -1,6 +1,10 @@
 package main
 
-import "github.com/gin-gonic/gin"
+import (
+	"net/http"
+
+	"github.com/gin-gonic/gin"
+)
 
 func main() {
 	r := gin.Default()
@@ -10,11 +14,14 @@ func main() {
 		})
 	})
 
+	// https://learnku.com/docs/gin-gonic/1.7/examples-rendering/11371
 	r.GET("/string", returnString)
 	r.GET("/string/notFound", returnStringNotFound)
 	r.GET("/string/internalServerError", returnStringInternalServerError)
 
 	r.GET("/json", returnJson)
+	r.GET("/json/struct", returnJsonStruct)
+	r.GET("/json/map", returnJsonMap)
 
 	r.Run()
 }
@@ -39,4 +46,31 @@ func returnJson(c *gin.Context) {
 	c.JSON(200, gin.H{
 		"message": "我是一个JSON格式",
 	})
+}
+
+// 使用结构体返回一个JSON格式
+func returnJsonStruct(c *gin.Context) {
+	// 定义一个返回结构体
+	var msg struct {
+		Name    string `json:"user"`
+		Message string
+		Age     int
+	}
+	// 实例化一个结构体
+	msg.Name = "吕布"
+	msg.Message = "虎牢关"
+	msg.Age = 34
+
+	c.JSON(http.StatusOK, msg)
+}
+
+// 使用Map返回一个JSON格式
+func returnJsonMap(c *gin.Context) {
+	// 定义一个map
+	data := map[string]interface{}{
+		"name":    "董卓",
+		"message": "戏貂蝉",
+		"age":     56,
+	}
+	c.JSON(http.StatusOK, data)
 }
